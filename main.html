@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[gmfu32] - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000000; /* Black background */
+            color: #d8b4fe; /* Light Purple for main text */
+            overflow-x: hidden;
+        }
+
+        /* --- STYLES FOR HERO SECTION --- */
+        .hero-font {
+            font-family: 'Montserrat', sans-serif; /* Bolder font for hero */
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #f02fc2, #6d63e8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .typing-cursor {
+            animation: blink 1s step-end infinite;
+            font-weight: bold;
+            color: #f02fc2;
+        }
+
+        /* --- STYLES FOR HORIZONTAL IMAGE STRIP --- */
+        .horizontal-image-strip {
+            display: flex;
+            width: 100%;
+            height: 250px; 
+            border-radius: 0.75rem;
+            border: 1px solid #581c87;
+            box-shadow: 0 4px 12px rgba(168, 85, 247, 0.15);
+            background-color: #161616;
+            overflow: hidden;
+        }
+        .strip-image-item {
+            flex: 1 0 calc(100% / 3);
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .strip-image-item:not(:last-child) {
+            border-right: 1px solid #3b0764; /* Darker purple separator */
+        }
+        .strip-image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease-in-out;
+        }
+        .strip-image-item:hover img {
+            transform: scale(1.1);
+        }
+        /* --- END NEW STYLES --- */
+
+        #mainHeader {
+            background-color: rgba(0,0,0,0.7); 
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #3c0764; 
+        }
+
+        #mainHeader .hero-name-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #e9d5ff;
+        }
+
+        nav a {
+            position: relative;
+            padding-bottom: 4px;
+            color: #e9d5ff;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+        nav a:hover { color: #22d3ee; }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #22d3ee;
+            transition: width 0.3s ease;
+        }
+        nav a:hover::after, nav a.nav-link-active::after { width: 100%; }
+        .nav-link-active { color: #22d3ee !important; }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #f02fc2, #6d63e8);
+            color: white;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(240, 47, 194, 0.5);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: white;
+            color: #000000;
+            transform: scale(1.05);
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            color: #c084fc;
+        }
+
+        /* Other Original Styles */
+        .project-card { background-color: #161616; border: 1px solid #581c87; border-radius: 0.75rem; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; overflow: hidden; }
+        .project-card:hover { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(34, 211, 238, 0.15); }
+        .project-card h3 { color: #c084fc; }
+        .project-card p { color: #d8b4fe; }
+        .form-input { background-color: #1f1f1f; border: 1px solid #581c87; color: #d8b4fe; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        .form-input::placeholder { color: #a855f7; }
+        .form-input:focus { border-color: #22d3ee; box-shadow: 0 0 0 0.2rem rgba(34, 211, 238, 0.25); }
+        footer { background-color: #0a0a0a; border-top: 1px solid #581c87; color: #a855f7; }
+        footer a { color: #c084fc; }
+        footer a:hover { color: #22d3ee; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="mainHeader">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl hero-name-title">gmfu32</a>
+            <ul class="hidden md:flex space-x-8 text-md">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main> 
+        <section id="home" class="px-6 pt-32 pb-20 md:pt-40 md:pb-28 relative overflow-hidden">
+            
+            <div class="container mx-auto max-w-6xl w-full">
+                <div class="text-center">
+                    <h1 class="hero-font font-black text-6xl sm:text-7xl lg:text-8xl leading-tight">
+                        <span class="text-white block">Salam, Its</span>
+                        <span class="gradient-text block">Ammar</span>
+                    </h1>
+                  <p class="hero-font text-2xl lg:text-3xl font-bold mt-4" style="color:#f02fc2;">
+                        aspiring Data/AI Engineer<span class="typing-cursor">|</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="container mx-auto max-w-4xl text-center mt-20 md:mt-28">
+   <h2 class="hero-font text-4xl md:text-5xl font-bold text-white mb-6"></h2>
+                
+                <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#projects" class="btn-primary py-3 px-8 rounded-lg text-lg font-semibold shadow-md">
+                        Projects
+                    </a>
+                    <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1pVLquw9LDk8bfSnW7UapZERgxf2ocU4b%2Fview%3Fusp%3Dsharing&followup=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1pVLquw9LDk8bfSnW7UapZERgxf2ocU4b%2Fview%3Fusp%3Dsharing&ifkv=AdBytiMoAV3Zdryz2jWSqdnNRHFIujuPHApUdACr_ADk5z1bGdtd8umccjNz3NK6mVB17b_oaA1CAw&osid=1&passive=1209600&service=wise&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-518758181%3A1753055926786365" target="_blank" class="btn-secondary py-3 px-8 rounded-lg text-lg font-semibold">
+                        View my Resume
+                    </a>
+                </div>
+
+                <div class="horizontal-image-strip mt-16">
+                    <div class="strip-image-item">
+                        <img src="pic6.jpg" alt="Personal Picture 1">
+                    </div>
+                    <div class="strip-image-item">
+                        <img src="pic2.jpg" alt="Personal Picture 2">
+                    </div>
+                    <div class="strip-image-item">
+                        <img src="pic7.jpg" alt="Personal Picture 3">
+            </div>
+        </section>
+        <section id="about" class="py-20 md:py-32 px-6 bg-black">
+            <div class="container mx-auto max-w-4xl text-center">
+                <h2 class="section-title text-4xl md:text-5xl font-bold mb-6">About Me</h2>
+                 <p class="text-lg leading-relaxed mb-4 max-w-2xl mx-auto text-purple-300">
+A guy with a passion for asking the right questions and sifting through information to uncover hidden trends. I'm driven by the challenge of turning those insights into smarter decisions. As an aspiring Data Analyst and AI Engineer, I'm excited to use my skills in both analytics and machine learning to not only interpret data, but to build the intelligent tools that will shape our future.                </p>
+                <p class="text-lg leading-relaxed mb-10 max-w-2xl mx-auto text-purple-300">
+                </p>
+                 <h3 class="text-3xl font-bold mb-6" style="color: #a78bfa;">Hard Skills</h3>
+                <div class="flex flex-wrap gap-4 justify-center"> 
+                    <span class="bg-purple-900 text-purple-200 text-md font-medium px-5 py-2 rounded-full">Python</span>
+                    <span class="bg-purple-900 text-purple-200 text-md font-medium px-5 py-2 rounded-full">SQL</span>
+                    <span class="bg-purple-900 text-purple-200 text-md font-medium px-5 py-2 rounded-full">Power BI</span>
+                    <span class="bg-purple-900 text-purple-200 text-md font-medium px-5 py-2 rounded-full">Excel</span>
+                    <span class="bg-purple-900 text-purple-200 text-md font-medium px-5 py-2 rounded-full">R</span>
+                    <span class="bg-purple-900 text-purple-200 text-md font-medium px-5 py-2 rounded-full">PowerPoint</span>
+                    <span class="bg-purple-900 text-purple-200 text-md font-medium px-5 py-2 rounded-full">Data Modeling</span>
+                    <span class="bg-purple-900 text-purple-200 text-md font-medium px-5 py-2 rounded-full">Web Scraping</span>
+                    <span class="bg-purple-900 text-purple-200 text-md font-medium px-5 py-2 rounded-full">Machine Learning</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 md:py-32 px-6" style="background-color: #050505;"> 
+        <div class="container mx-auto">
+            <h2 class="section-title text-4xl md:text-5xl font-bold text-center mb-16">Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                 
+                <div class="project-card">
+                    <img src="pho1.jpg" alt="AI Talent Acquisition System" class="w-full h-60 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">AI Talent Acquisition System</h3>
+                        <p class="text-sm mb-4 leading-relaxed">AI system to speed up the hiring process.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/Gmfu32/AI-Powered-Talent-Acquisition-System" target="_blank" class="btn-primary text-sm py-2 px-4 rounded-md font-semibold">github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="pho2.jpg" alt="Countries Population Project" class="w-full h-60 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Countries Population</h3>
+                        <p class="text-sm mb-4 leading-relaxed">Scraped and analyzed global population data to create a dynamic Power BI dashboard.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/Gmfu32/Countries-Population" target="_blank" class="btn-primary text-sm py-2 px-4 rounded-md font-semibold">github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="pho3.png" alt="Fifa World Cup 2022 Project" class="w-full h-60 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Fifa World Cup 2022</h3>
+                        <p class="text-sm mb-4 leading-relaxed">match result reviewer webapp using flask for the world cup matches and EDA for the dataset.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/Gmfu32/Fifa-World-Cup-2022" target="_blank" class="btn-primary text-sm py-2 px-4 rounded-md font-semibold">github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="pho4.png" alt="New Project" class="w-full h-60 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Apu Fc Website</h3>
+                        <p class="text-sm mb-4 leading-relaxed">A website for APU football club that allows users to view the club details such as, recent matches, results, upcoming events, etc.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/Gmfu32/APU-FC-Website" target="_blank" class="btn-primary text-sm py-2 px-4 rounded-md font-semibold">github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="pho5.png" alt="Another Project" class="w-full h-60 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Laptop Prices Prediction</h3>
+                        <p class="text-sm mb-4 leading-relaxed">Developed a machine learning model using Python to predict laptop prices based on various hardware features.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/Gmfu32/Predicting-Laptop-Prices" target="_blank" class="btn-primary text-sm py-2 px-4 rounded-md font-semibold">github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="pho6.png" alt="Final Project" class="w-full h-60 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Web Hacking Trends</h3>
+                        <p class="text-sm mb-4 leading-relaxed">conduct an in-depth analysis of the hacker's activities for the past 15 years.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/Gmfu32/Web-Hacking-Trends" target="_blank" class="btn-primary text-sm py-2 px-4 rounded-md font-semibold">github</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+        <section id="contact" class="py-20 md:py-32 px-6" style="background-color: #0a0a0a;">
+             <div class="container mx-auto max-w-2xl text-center">
+                <h2 class="section-title text-4xl md:text-5xl font-bold mb-6">Let's Collaborate</h2>
+                <p class="text-lg leading-relaxed mb-10 text-purple-300">
+                    always excited to discuss new projects, creative ideas, or opportunities to be part of something amazing.
+                </p>
+                <form action="https://formsubmit.co/ammaribrahim1232@gmail.com" method="POST" class="space-y-6 text-left">
+                    <div>
+                        <label for="name" class="block text-sm font-medium mb-1 text-purple-400">Full Name</label>
+                        <input type="text" name="name" id="name" required class="form-input w-full px-4 py-3 rounded-lg shadow-sm" placeholder="Ammar Ibrahim">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium mb-1 text-purple-400">Email Address</label>
+                        <input type="email" name="email" id="email" required class="form-input w-full px-4 py-3 rounded-lg shadow-sm" placeholder="ammaribrahim1232@gmail.com">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium mb-1 text-purple-400">Message</label>
+                        <textarea name="message" id="message" rows="5" required class="form-input w-full px-4 py-3 rounded-lg shadow-sm" placeholder="Your thoughts, ideas, or how I can help?"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn-primary py-3 px-10 rounded-lg text-lg font-semibold shadow-md">Send Message</button>
+                    </div>
+                </form>
+             </div>
+        </section>
+    </main>
+    
+    <footer class="py-12 px-6 text-center">
+        <div class="container mx-auto">
+            <div class="mb-6 flex justify-center space-x-6">
+                <a href="http://www.linkedin.com/in/ammar-ibrahim-a052a42a1" class="text-2xl">LinkedIn</a>
+                <a href="https://github.com/Gmfu32" class="text-2xl">Github</a>
+                <a href="https://www.instagram.com/gmfu32?igsh=MWE0cWJidDdqbXl2Mw==" class="text-2xl">Instagram</a>
+            </div>
+            <p class="text-sm"><span id=""></span>Love and Gudience❤️</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('header nav ul li a');
+        const header = document.getElementById('mainHeader');
+        function updateActiveNavLink() {
+            let currentSectionId = '';
+            const headerHeight = header.offsetHeight;
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - headerHeight - 100;
+                if (window.pageYOffset >= sectionTop) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+            if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2) {
+                currentSectionId = sections[sections.length - 1].id;
+            }
+            navLinks.forEach(link => {
+                link.classList.remove('nav-link-active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('nav-link-active');
+                }
+            });
+        }
+        function handleHeaderScroll() {
+            if (window.pageYOffset > 30) { 
+                header.classList.add('shadow-lg'); 
+                header.style.backgroundColor = 'rgba(10, 10, 20, 0.85)'; 
+            } else {
+                header.classList.remove('shadow-lg');
+                header.style.backgroundColor = 'rgba(0,0,0,0.7)';
+            }
+        }
+        window.addEventListener('scroll', () => {
+            updateActiveNavLink();
+            handleHeaderScroll();
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            updateActiveNavLink();
+            handleHeaderScroll(); 
+        });
+    </script>
+</body>
+</html>
